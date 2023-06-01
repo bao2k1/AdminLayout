@@ -20,9 +20,10 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="tables" element={<Tables />} />
             <Route path="billing" />
-            <Route path="users" element={<Users />} />
-            <Route path="users/add" element={<AddUser />} />
-            <Route path="users/update/:id" element={<UpdateUser />} />
+            {/* <Route path="users" element={<Users />} /> */}
+            {/* <Route path="users/add" element={<AddUser />} />
+            <Route path="users/update/:id" element={<UpdateUser />} /> */}
+           
             <Route path="profile" />
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Route>

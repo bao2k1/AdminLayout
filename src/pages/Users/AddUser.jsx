@@ -36,6 +36,7 @@ export const AddUser = () => {
     // Create a new user object
     const dataUsers=location.state.data;
     const newUser = {
+      key:Math.floor(Math.random() * (1000000 - 13 + 1)) + 13,
       id: Math.floor(Math.random() * (1000000 - 13 + 1)) + 13,
       name,
       age,

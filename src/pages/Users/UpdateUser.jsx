@@ -37,7 +37,7 @@ export const UpdateUser = () => {
 const userToUpdate = location.state.data.find((user) => user.id === parseInt(id));
   useEffect(() => {
     console.log(userToUpdate);
-    setName(userToUpdate.fullname);
+    setName(userToUpdate.name);
     setEmail(userToUpdate.email);
     setDob(userToUpdate.dob);
     setRole(userToUpdate.role);

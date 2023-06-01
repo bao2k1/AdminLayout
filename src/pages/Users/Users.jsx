@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useUserContext } from '../../../src/context/UserContext.js';
 import useFetchData from 'data/useFetchData.js';
+import Excel from 'components/Excel/Excel';
 const primaryButtonStyle = { backgroundColor: '#1890ff' };
 const dangerButtonStyle = { backgroundColor: '#ff4d4f' };
 const customButtonStyle = { backgroundColor: '#fadb14', color: '#000000' };
@@ -28,6 +29,14 @@ const customButtonStyle = { backgroundColor: '#fadb14', color: '#000000' };
       height:40px;
       margin-right:10px;
       
+    }
+    .btn-export{
+      width: 120px;
+            height:40px;
+            margin-right:10px;
+            border:none;
+            background-color:green;
+            color:white;
     }
     .top-table-users {
       width: 100%;
@@ -200,7 +209,53 @@ const initData=useFetchData();
       <div className="top-table-users">
 
         <h1>Users List</h1>
-        <Button onClick={()=>handleAddUser()} className='btn-users' type="primary" style={primaryButtonStyle}>Thêm</Button>
+        <div className="btn-add">
+        <Excel
+          fileName="export-user"
+          data={[
+            {
+              columns: [
+                {
+                  title: "User Id",
+                  dataIndex: "id",
+                  width: 5,
+                },
+                {
+                  title: "Name",
+                  dataIndex: "name",
+                  width: 20,
+                },
+                {
+                  title: "Email",
+                  dataIndex: "email",
+                  width: 50,
+                },
+              ],
+              data: data,
+              tabName: "info",
+            },
+            {
+              columns: [
+                {
+                  title: "Role",
+                  dataIndex: "role",
+                  width: 30,
+                },
+                {
+                  title: "Phone",
+                  dataIndex: "phone",
+                  width: 30,
+                },
+              ],
+              data: data,
+              tabName: "contact",
+            },
+          ]}
+        >
+          <Button className='btn-export'>Export users</Button>
+        </Excel>
+         <Button onClick={()=>handleAddUser()} className='btn-users' type="primary" style={primaryButtonStyle}>Thêm</Button>
+        </div>
       </div>
               <Table
           columns={columns}

@@ -17,10 +17,11 @@ import Dashboard from '../pages/Dashboard';
 import Tables from '../pages/Tables';
 import Sidenav from "../components/Sidenav";
 import Users, { AddUser, UpdateUser } from 'pages/Users';
+import Products from 'pages/Products';
 const { Header, Content, Sider } = Layout;
 const labels=[
   "DashBoard",
-  "Tables",
+  "Products",
   "Billing",
   "Users",
   "Profile",
@@ -97,6 +98,7 @@ function MainLayout({ children }) {
             <Route path="/users" element={<Users/>}></Route>
             <Route path="/users/add" element={<AddUser/>}></Route>
             <Route path="/users/update/:id" element={<UpdateUser  />} />
+            <Route path="/products" element={<Products/>}></Route>
 
 
           </Routes>
