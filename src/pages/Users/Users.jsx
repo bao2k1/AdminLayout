@@ -44,6 +44,16 @@ const customButtonStyle = { backgroundColor: '#fadb14', color: '#000000' };
       justify-content:space-between;
       align-items:center;
     }
+    .box-img{
+      display:flex;
+      align-items:center;
+      .img-product{
+        width: 40px;
+        height: 40px;
+        border-radius:50%;
+        border:1px solid #ccc;
+      }
+    }
   `
  const Users = () => {
  
@@ -82,6 +92,11 @@ const columns = [
     dataIndex: 'address',
     key: '5',
     width: 100,
+    render:()=>(
+      <div className='box-img'>
+              <img className='img-product' src="https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png" alt="" />
+            </div>
+    )
   },
   {
     title: 'Email',
