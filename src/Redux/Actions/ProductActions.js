@@ -8,7 +8,7 @@ import {
   PRODUCT_CREATE_SUCCESS,
 
 } from "../Constants/ProductConstants";
-const newList = [... listProduct];
+
 
 export const listProduct = () => async (
   dispatch
