@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import  { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../../Redux/Actions/ProductActions";
 import { Button, Table } from 'antd';
@@ -108,19 +108,27 @@ const Products = () => {
         },
       ];
       
-      // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const productList = useSelector((state) => state.productList);
-   const {  products } = productList;
+  const {  products } = productList;
       
-// console.log(products)
+console.log(products)
+// console.log(productList);
+// setData(products);
   
 useEffect(() => {
   dispatch(listProduct());
   // setData(products || []);
 }, [dispatch]);
+const handleAddProduct = () => {
   
+  
+  navigate('/products/add');
+
+  // console.log(location)
+};
 
   return (
     <ProductsTable>
@@ -172,7 +180,7 @@ useEffect(() => {
 >
   <Button className='btn-export'>Export users</Button>
 </Excel> */}
- <Button  className='btn-users' type="primary" style={primaryButtonStyle}>Thêm</Button>
+ <Button onClick={()=>handleAddProduct()}  className='btn-users' type="primary" style={primaryButtonStyle}>Thêm</Button>
 </div>
 </div>
       <Table

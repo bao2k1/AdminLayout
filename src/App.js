@@ -14,9 +14,11 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/sign-up" />
-          <Route path="/sign-in" />
+          {/* <Route path="/sign-up" />
+          <Route path="/sign-in" /> */}
+           <Route path="/" element={<Navigate to="/dashboard" />} /> 
           <Route path="/" element={<MainLayout />}>
+
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="tables" element={<Tables />} />
             <Route path="billing" />
