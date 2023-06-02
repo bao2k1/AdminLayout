@@ -6,9 +6,11 @@ import {
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_FAIL,
 
 } from "../Constants/ProductConstants";
-
 
 export const listProduct = () => async (
   dispatch
@@ -62,4 +64,25 @@ export const createProduct =
       });
     }
   };
+//delete product
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PRODUCT_DELETE_REQUEST });
+
+
+    dispatch({ type: PRODUCT_DELETE_SUCCESS });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.messagae
+        : error.message;
+    if (message === "Not authorized, token failed") {
  
+    }
+    
+    dispatch({
+      type: PRODUCT_DELETE_FAIL,
+      payload: message,
+    });
+  }
+};

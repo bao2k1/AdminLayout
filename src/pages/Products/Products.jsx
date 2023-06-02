@@ -3,6 +3,7 @@ import  { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../../Redux/Actions/ProductActions";
+import { deleteProduct } from '../../Redux/Actions/ProductActions';
 import { Button, Table } from 'antd';
 import Excel from 'components/Excel';
 import styled from 'styled-components';
@@ -33,6 +34,10 @@ const ProductsTable=styled.div`
       display:flex;
       justify-content:space-between;
       align-items:center;
+    }
+    .img-product{
+      width: 100px;
+      height: 100px;
     }
   `
 const Products = () => {
@@ -67,6 +72,15 @@ const Products = () => {
           key: 'discountPercentage',
           width: 150,
         },
+        {
+          title: 'Image',
+          dataIndex: 'images',
+          key: 'images',
+          width: 150,
+          render: (images) => (
+            <img className='img-product' src={images[0]} alt="product" />
+          )
+        },
         
         
         {
@@ -89,12 +103,14 @@ const Products = () => {
           key: 'operation',
           fixed: 'right',
           width: 200,
-          render: (_, user) => (
+          render: (_, product) => (
             
             <div>
             <Button  className=' btn-delete btn-users' type="primary" danger
-            id={user.id}
-            
+            id={product.id}
+            onClick={() => {handleDeleteProduct(product.id)
+              // console.log(user.key)
+            }}
            
             >Xóa</Button>
             <Button className='btn-users'
@@ -113,15 +129,20 @@ const Products = () => {
   const navigate = useNavigate();
   const productList = useSelector((state) => state.productList);
   const {  products } = productList;
+
       
 console.log(products)
 // console.log(productList);
 // setData(products);
-  
+  useEffect(() => {
+    dispatch(listProduct())
+   
+  },[])
 useEffect(() => {
-  dispatch(listProduct());
-  // setData(products || []);
-}, [dispatch]);
+  
+  setData(products);
+
+}, [products]);
 const handleAddProduct = () => {
   
   
@@ -129,7 +150,15 @@ const handleAddProduct = () => {
 
   // console.log(location)
 };
+const handleDeleteProduct = ( id) => {
+  const updatedProducts = data.filter((product) => product.id !== id);
+  setData(updatedProducts);
 
+  // dispatch(deleteProduct(id));
+
+};
+
+// console.log("render")
   return (
     <ProductsTable>
     <div className="top-table-users">
@@ -185,7 +214,7 @@ const handleAddProduct = () => {
 </div>
       <Table
   columns={columns}
-  dataSource={products}
+  dataSource={data}
   columnWidth={40}
   rowClassName={() => 'custom-row'}
   scroll={{
